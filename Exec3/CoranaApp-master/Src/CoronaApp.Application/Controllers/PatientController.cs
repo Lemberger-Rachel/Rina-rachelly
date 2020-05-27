@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoronaApp.Services;
-using CoronaApp.Services.Models;
+using CoronaApp.Dal;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -31,7 +31,7 @@ namespace CoronaApp.Api.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
-            PatientRepository.Save(new Services.Models.Patient(int.Parse(value)));
+            PatientRepository.Save(new Dal.Patient(int.Parse(value)));
         }
 
         // PUT api/<PatientController>/5

@@ -7,7 +7,7 @@ let locationsList = [];
 
 let searchLocationsList = [];
 
-let listNamesForColumns = ["city", "location", "startDate", "endDate"];
+let listNamesForColumns = ["Id","city", "location", "startDate", "endDate"];
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "", currentList;
 obj = { table: "demo", limit: 20 };
@@ -29,29 +29,6 @@ function load() {
 
 }
 
-function syntaxHighlight(json) {
-    if (typeof json != 'string') {
-        json = JSON.stringify(json, undefined, 2);
-    }
-    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-        var cls = 'number';
-        if (/^"/.test(match)) {
-            if (/:$/.test(match)) {
-                cls = 'key';
-            } else {
-                cls = 'string';
-            }
-        } else if (/true|false/.test(match)) {
-            cls = 'boolean';
-        } else if (/null/.test(match)) {
-            cls = 'null';
-        }
-
-        return match;
-    });
-}
-
 function styleTable(table) {
     table.style.textAlign = "center";
     table.setAttribute("id", "personTable");
@@ -69,7 +46,7 @@ function createTable(locationsList) {
         styleTable(table);
         var col = [];
         //var numberOfProperties = Object.keys(locationsList[0].).length;
-        var numberOfProperties = 4;
+        var numberOfProperties = 5;
         var tHead = document.createElement("thead");
         var hRow = document.createElement("tr");
         for (let j = 0; j < numberOfProperties; j++) {
@@ -95,7 +72,7 @@ function createTable(locationsList) {
                     index++;
                     var td = document.createElement("td");
                     td.style.width = "50px";
-                    if (index===3|| index==4) {
+                    if (index===5|| index==4) {
                         item2 = item2.substring(0, 10);
                       //  item2[4] = "/";
                     }

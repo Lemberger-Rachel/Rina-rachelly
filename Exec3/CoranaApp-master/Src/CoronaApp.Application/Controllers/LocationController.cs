@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CoronaApp.Services;
-using CoronaApp.Services.Models;
-//using CoronaApp.Dal;
+
+using Microsoft.EntityFrameworkCore;
+using CoronaApp.Dal;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,6 +16,7 @@ namespace CoronaApp.Api.Controllers
     [ApiController]
     public class LocationController : ControllerBase
     {
+
         public ILocationRepository LocationRepository;
         public LocationController(ILocationRepository locationRepository)
         {
@@ -27,7 +29,9 @@ namespace CoronaApp.Api.Controllers
         public IActionResult GetAllList()
         {
             var listPatient = new List<Location>();
-            foreach (var item in AddToDB.patients)
+            CoronaContext context = new CoronaContext();
+
+            foreach (var item in context.Patient.Include(x => x.Path))
             {
                 foreach (var item2 in item.Path)
                 {

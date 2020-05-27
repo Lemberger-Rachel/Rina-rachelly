@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronaApp.Services.Models
+namespace CoronaApp.Dal
 {
   public  class AddToDB
     {

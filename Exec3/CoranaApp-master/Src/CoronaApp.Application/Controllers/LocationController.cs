@@ -29,31 +29,18 @@ namespace CoronaApp.Api.Controllers
         public IActionResult GetAllList()
         {
             var listPatient = new List<Location>();
-            CoronaContext context = new CoronaContext();
-
-            foreach (var item in context.Patient.Include(x => x.Path))
-            {
-                foreach (var item2 in item.Path)
-                {
-                    listPatient.Add(item2);
-                }
-            }
+            LocationRepository.GetAllList(listPatient);
             return Ok(listPatient);
         }
         [HttpGet]
-        //[Route("{action}")]
+        [Route("{action}")]
         public IEnumerable<Location> Get([FromQuery] LocationSearch locationSearch=null)
         {
-            var listDemo = LocationRepository.Get(locationSearch);
+            var listDemo = (List<Location>)LocationRepository.SearchBy(locationSearch);
             return listDemo;
         }
-
-        [HttpGet]
-       [Route("action/{id}")]
-        public string Geta(string id)
-        {
-            return ("freg");
-        }
+        
+       
 
     }
 }

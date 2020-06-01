@@ -32,6 +32,7 @@ namespace CoronaApp.Api
             services.AddScoped(typeof(ILocationRepository), typeof(LocationRepository));
             services.AddControllers();
             services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddDbContext<CoronaContext>(options => options.UseSqlServer
             (Configuration.GetConnectionString("CoronaDBConnectionString")));
 

@@ -7,7 +7,11 @@ namespace CoronaApp.Services
 {
     public interface ILocationRepository
     {
-        ICollection<Location> Get(LocationSearch locationSearch);
-        ICollection<Location> GetAllList();
+        ICollection<Location> SearchByCity(LocationSearch locationSearch);
+        ICollection<Location> GetAllList(List<Location> locations);
+        ICollection<Location> SearchByDate(LocationSearch locationSearch);
+        ICollection<Location> SearchBy(LocationSearch locationSearch);
+        ICollection<Location> SearchByAllParams(LocationSearch locationSearch);
+
     }
 }
